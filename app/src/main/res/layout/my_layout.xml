@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="首页"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="0,1,2"
+            android:gravity="center">
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/floder"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:background="#e2a617"
+                    android:text="文件夹"
+                    android:gravity="center"
+                    android:focusable="true"
+                    android:nextFocusRight="@id/stroe"
+                    android:nextFocusDown="@id/setting"/>
+
+                <TextView
+                    android:id="@+id/stroe"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:background="#0d637f"
+                    android:text="商店"
+                    android:gravity="center"
+                    android:focusable="true"
+                    android:nextFocusLeft="@id/floder"
+                    android:nextFocusDown="@id/other"
+                    android:nextFocusRight="@id/manager"/>
+
+                <TextView
+                    android:id="@+id/manager"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:background="#aa2266"
+                    android:text="文件管理"
+                    android:gravity="center"
+                    android:focusable="true"
+                    android:nextFocusLeft="@id/stroe"
+                    android:nextFocusDown="@id/other"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/setting"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:background="#45e15f"
+                    android:text="设置"
+                    android:gravity="center"
+                    android:focusable="true"
+                    android:nextFocusUp="@id/floder"
+                    android:nextFocusRight="@id/other"/>
+                <TextView
+                    android:id="@+id/other"
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:background="#3924a4"
+                    android:text="其他"
+                    android:gravity="center"
+                    android:layout_span="2"
+                    android:focusable="true"
+                    android:nextFocusLeft="@id/setting"
+                    android:nextFocusUp="@id/stroe"/>
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#f5f5f5"
+        android:stretchColumns="0,1,2,3"
+        android:gravity="center_vertical">
+
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="首页"
+                android:textColor="#FFB6C1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="消息"
+                android:textColor="#FFB6C1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="发现"
+                android:textColor="#FFB6C1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="我"
+                android:textColor="#FFB6C1"/>
+        </TableRow>
+
+    </TableLayout>
+</LinearLayout>
