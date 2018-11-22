@@ -55,8 +55,9 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             recyclerGridView = (RecyclerView)itemView.findViewById(R.id.recyclerGridView);
-            RecyclerView.LayoutManager manager = new GridLayoutManager(itemView.getContext(), list.size());
+            RecyclerView.LayoutManager manager = new GridLayoutManager(itemView.getContext(), 3);
             manager.setAutoMeasureEnabled(true);
+            ((GridLayoutManager) manager).setOrientation(GridLayoutManager.HORIZONTAL);
             recyclerGridView.setLayoutManager(manager);
         }
     }
