@@ -12,7 +12,7 @@ import com.example.a47253.tvproject.adapter.RecycleViewAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyRecycleviewActivity extends AppCompatActivity {
+public class VideoMainActivity extends AppCompatActivity {
     List<String> list = new ArrayList<String>();
     List<String> videoList = new ArrayList<String>();
     RecyclerView viedioView;
