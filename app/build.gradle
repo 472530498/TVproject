@@ -19,8 +19,8 @@ android {
         main {
             res.srcDirs =
                     [
-                            'src/main/res/layouts/land',
-                            'src/main/res/layouts/prot',
+                            'src/main/res/layouts/main-activity',
+                            'src/main/res/layouts/videomain-activity',
                             'src/main/res/layouts',
                             'src/main/res'
                     ]

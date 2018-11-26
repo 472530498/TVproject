@@ -1,6 +1,7 @@
 package com.example.a47253.tvproject;
 
 import android.app.UiModeManager;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -44,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
         manager.setOnFocusChangeListener(new ViewOnFocusChanageListener());
         other.setOnFocusChangeListener(new ViewOnFocusChanageListener());
         floder.requestFocus();
+        floder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toVideoMainActivityIntent = new Intent();
+                toVideoMainActivityIntent.setClass(MainActivity.this, VideoMainActivity.class);
+                startActivity(toVideoMainActivityIntent);
+            }
+        });
     }
 
     private class ViewOnFocusChanageListener implements OnFocusChangeListener{

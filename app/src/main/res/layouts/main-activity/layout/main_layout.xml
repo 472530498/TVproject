@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,7 +11,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="首页"/>
+            android:text="欢迎使用"/>
     </LinearLayout>
 
     <LinearLayout
@@ -31,7 +33,7 @@
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#e2a617"
-                    android:text="文件夹"
+                    android:text="每日更新"
                     android:gravity="center"
                     android:focusable="true"
                     android:nextFocusRight="@id/stroe"
@@ -43,7 +45,7 @@
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#0d637f"
-                    android:text="商店"
+                    android:text="电视剧"
                     android:gravity="center"
                     android:focusable="true"
                     android:nextFocusLeft="@id/floder"
@@ -56,7 +58,7 @@
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#aa2266"
-                    android:text="文件管理"
+                    android:text="电影"
                     android:gravity="center"
                     android:focusable="true"
                     android:nextFocusLeft="@id/stroe"
@@ -70,7 +72,7 @@
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#45e15f"
-                    android:text="设置"
+                    android:text="综艺"
                     android:gravity="center"
                     android:focusable="true"
                     android:nextFocusUp="@id/floder"
@@ -81,7 +83,7 @@
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#3924a4"
-                    android:text="其他"
+                    android:text="更多"
                     android:gravity="center"
                     android:layout_span="2"
                     android:focusable="true"
@@ -105,25 +107,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="首页"
+                android:text="收藏"
                 android:textColor="#FFB6C1"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="消息"
+                android:text="下载"
                 android:textColor="#FFB6C1"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="发现"
+                android:text="合作"
                 android:textColor="#FFB6C1"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="我"
+                android:text="我的"
                 android:textColor="#FFB6C1"/>
         </TableRow>
 
