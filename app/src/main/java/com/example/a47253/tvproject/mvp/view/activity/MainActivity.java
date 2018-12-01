@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.a47253.tvproject.R;
 import com.example.a47253.tvproject.mvp.presenter.MainPresenter;
@@ -82,6 +83,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
                  mainPresenter.jumpActivity(MainActivity.this,VideoMainActivity.class);
             }
         });
+        mainPresenter.checkLogin();
     }
 
     @Override
@@ -111,6 +113,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
                     .scaleY(1)
                     .translationZ(1)
                     .start();
+        }
+    }
+
+    @Override
+    public void checkout(boolean bool) {
+        if (!bool) {
+            Log.i(TAG,"bool: " + bool);
+            Toast.makeText(MainActivity.this,"没有登陆",Toast.LENGTH_LONG).show();
         }
     }
 
