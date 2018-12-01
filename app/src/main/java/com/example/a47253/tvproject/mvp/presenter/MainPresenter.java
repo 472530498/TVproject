@@ -20,7 +20,7 @@ public class MainPresenter extends BasePresenter {
         mainModel.checkLoginStatus(new IMainModel() {
             @Override
             public void checkLogin(boolean res) {
-                mainView.checkout(res);
+                mainView.showLoginStatus(res);
             }
         });
     }

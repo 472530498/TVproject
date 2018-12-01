@@ -8,5 +8,5 @@ import com.example.a47253.tvproject.mvp.view.iview.base.IBaseView;
 public interface MainView extends IBaseView {
     void jump(Context context, Class<?> tclass);
     void force(View view, boolean hasFocus);
-    void checkout(boolean bool);
+    void showLoginStatus(boolean bool);
 }

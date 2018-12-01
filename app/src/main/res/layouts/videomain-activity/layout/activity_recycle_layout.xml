@@ -4,18 +4,17 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.a47253.tvproject.mvp.view.activity.VideoMainActivity"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
     <include layout="@layout/tv_option"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1"></include>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ></include>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewOPtion"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="9"
         ></android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

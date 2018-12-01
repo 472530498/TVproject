@@ -117,7 +117,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
     }
 
     @Override
-    public void checkout(boolean bool) {
+    public void showLoginStatus(boolean bool) {
         if (!bool) {
             Log.i(TAG,"bool: " + bool);
             Toast.makeText(MainActivity.this,"没有登陆",Toast.LENGTH_LONG).show();
