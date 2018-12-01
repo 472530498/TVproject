@@ -23,12 +23,14 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:stretchColumns="0,1,2"
             android:gravity="center">
 
             <TableRow>
                 <TextView
-                    android:id="@+id/floder"
+                    android:id="@+id/daily_update"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
@@ -36,11 +38,11 @@
                     android:text="每日更新"
                     android:gravity="center"
                     android:focusable="true"
-                    android:nextFocusRight="@id/stroe"
-                    android:nextFocusDown="@id/setting"/>
+                    android:nextFocusRight="@id/tv_play"
+                    android:nextFocusDown="@id/variety_show"/>
 
                 <TextView
-                    android:id="@+id/stroe"
+                    android:id="@+id/tv_play"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
@@ -48,12 +50,12 @@
                     android:text="电视剧"
                     android:gravity="center"
                     android:focusable="true"
-                    android:nextFocusLeft="@id/floder"
-                    android:nextFocusDown="@id/other"
-                    android:nextFocusRight="@id/manager"/>
+                    android:nextFocusLeft="@id/daily_update"
+                    android:nextFocusDown="@id/more"
+                    android:nextFocusRight="@id/film"/>
 
                 <TextView
-                    android:id="@+id/manager"
+                    android:id="@+id/film"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
@@ -61,13 +63,13 @@
                     android:text="电影"
                     android:gravity="center"
                     android:focusable="true"
-                    android:nextFocusLeft="@id/stroe"
-                    android:nextFocusDown="@id/other"/>
+                    android:nextFocusLeft="@id/tv_play"
+                    android:nextFocusDown="@id/more"/>
             </TableRow>
 
             <TableRow>
                 <TextView
-                    android:id="@+id/setting"
+                    android:id="@+id/variety_show"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
@@ -75,10 +77,10 @@
                     android:text="综艺"
                     android:gravity="center"
                     android:focusable="true"
-                    android:nextFocusUp="@id/floder"
-                    android:nextFocusRight="@id/other"/>
+                    android:nextFocusUp="@id/daily_update"
+                    android:nextFocusRight="@id/more"/>
                 <TextView
-                    android:id="@+id/other"
+                    android:id="@+id/more"
                     android:layout_width="200dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
@@ -87,8 +89,8 @@
                     android:gravity="center"
                     android:layout_span="2"
                     android:focusable="true"
-                    android:nextFocusLeft="@id/setting"
-                    android:nextFocusUp="@id/stroe"/>
+                    android:nextFocusLeft="@id/variety_show"
+                    android:nextFocusUp="@id/tv_play"/>
             </TableRow>
 
         </TableLayout>
@@ -104,24 +106,28 @@
 
         <TableRow>
             <TextView
+                android:id="@+id/collection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="收藏"
                 android:textColor="#FFB6C1"/>
             <TextView
+                android:id="@+id/download"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="下载"
                 android:textColor="#FFB6C1"/>
             <TextView
+                android:id="@+id/cooperation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="合作"
                 android:textColor="#FFB6C1"/>
             <TextView
+                android:id="@+id/mind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
