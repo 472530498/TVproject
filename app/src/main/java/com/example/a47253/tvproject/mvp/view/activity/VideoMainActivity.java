@@ -1,4 +1,4 @@
-package com.example.a47253.tvproject;
+package com.example.a47253.tvproject.mvp.view.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.example.a47253.tvproject.R;
 import com.example.a47253.tvproject.adapter.RecycleViewAdapter;
 
 import java.util.ArrayList;

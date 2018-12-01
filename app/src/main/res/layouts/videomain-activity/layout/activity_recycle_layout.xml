@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.a47253.tvproject.VideoMainActivity"
+    tools:context="com.example.a47253.tvproject.mvp.view.activity.VideoMainActivity"
     android:orientation="horizontal">
 
     <include layout="@layout/tv_option"

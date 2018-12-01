@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat"
         android:banner = "@drawable/banner">
-        <activity android:name=".MainActivity"
+        <activity android:name=".mvp.view.activity.MainActivity"
             android:theme="@style/Theme.AppCompat">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +27,7 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".VideoMainActivity"></activity>
+        <activity android:name=".mvp.view.activity.VideoMainActivity"></activity>
     </application>
 
 </manifest>
