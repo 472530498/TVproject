@@ -3,12 +3,14 @@
     android:layout_width="500dp"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <TextView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/poster"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
     <TextView
+        android:id="@+id/poster_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="title"/>
+        android:text="poster_name"/>
 </LinearLayout>
