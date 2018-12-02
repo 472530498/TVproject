@@ -29,7 +29,7 @@ public class VideoMainActivity extends AppCompatActivity {
         ((GridLayoutManager) manager).setOrientation(GridLayoutManager.VERTICAL);
         viedioView.setLayoutManager(manager);
         viedioView.setAdapter(gridAdapter);
-        for (int i = 0; i<2; i++) {
+        for (int i = 0; i<7; i++) {
             videoList.add(new PosterBean("","海报名字"));
         }
         Log.i("list", videoList.toString());
