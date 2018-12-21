@@ -6,15 +6,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.example.a47253.tvproject.R;
 import com.example.a47253.tvproject.adapter.GridAdapter;
+import com.example.a47253.tvproject.adapter.OnItemClickListener;
 import com.example.a47253.tvproject.bean.PosterBean;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class VideoMainActivity extends AppCompatActivity {
+    private final static String TAG = "VideoMainActivity";
     List<Object> videoList = new ArrayList<Object>();
     GridAdapter gridAdapter;
     RecyclerView viedioView;
@@ -34,6 +37,12 @@ public class VideoMainActivity extends AppCompatActivity {
         }
         Log.i("list", videoList.toString());
         gridAdapter.update(videoList);
+        gridAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int postion) {
+                Log.i(TAG, postion + "");
+            }
+        });
     }
 
 

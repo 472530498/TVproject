@@ -1,8 +1,10 @@
 package com.example.a47253.tvproject.mvp.view.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -15,6 +17,7 @@ import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
 public class GSYVideoPlayer extends BaseActivity<MainPresenter> implements MainView {
+    private static final String TAG = "GSYVideoPlayer";
 
     StandardGSYVideoPlayer videoPlayer;
 
@@ -32,7 +35,10 @@ public class GSYVideoPlayer extends BaseActivity<MainPresenter> implements MainV
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-
+        Intent i = getIntent();
+        Bundle videoData = i.getExtras();
+        Log.i(TAG, videoData.getString("videoName"));
+        Log.i(TAG, videoData.getString("videoUrl"));
     }
 
     @Override
