@@ -1,5 +1,6 @@
 package com.example.a47253.tvproject.mvp.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -41,6 +42,12 @@ public class VideoMainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int postion) {
                 Log.i(TAG, postion + "");
+                Intent intent = new Intent(VideoMainActivity.this, GSYVideoPlayer.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("posterName", "posterName");
+                bundle.putString("posterUrl", "posterUrl");
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }

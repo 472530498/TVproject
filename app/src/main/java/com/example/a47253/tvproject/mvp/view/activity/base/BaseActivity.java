@@ -58,9 +58,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
             setContentView(getContentLayout());
             ButterKnife.bind(this);
         }
+        initData(savedInstanceState);//由具体的activity实现，做数据的初始化
         initBarColor();//初始化状态栏/导航栏颜色，需在设置了布局后再调用
         initView(savedInstanceState);//由具体的activity实现，做视图相关的初始化
-        initData(savedInstanceState);//由具体的activity实现，做数据的初始化
         initEvent();//由具体的activity实现，做事件监听的初始化
     }
 

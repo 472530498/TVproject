@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.a47253.tvproject.R;
+import com.example.a47253.tvproject.bean.PosterBean;
+import com.example.a47253.tvproject.bean.VideoBean;
 import com.example.a47253.tvproject.mvp.presenter.MainPresenter;
 import com.example.a47253.tvproject.mvp.view.activity.base.BaseActivity;
 import com.example.a47253.tvproject.mvp.view.iview.MainView;
@@ -18,6 +20,8 @@ import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
 public class GSYVideoPlayer extends BaseActivity<MainPresenter> implements MainView {
     private static final String TAG = "GSYVideoPlayer";
+
+    VideoBean videoBean;
 
     StandardGSYVideoPlayer videoPlayer;
 
@@ -37,8 +41,12 @@ public class GSYVideoPlayer extends BaseActivity<MainPresenter> implements MainV
     protected void initData(Bundle savedInstanceState) {
         Intent i = getIntent();
         Bundle videoData = i.getExtras();
-        Log.i(TAG, videoData.getString("videoName"));
-        Log.i(TAG, videoData.getString("videoUrl"));
+        Log.i(TAG, videoData.getString("posterName"));
+        Log.i(TAG, videoData.getString("posterUrl"));
+        String posterName = videoData.getString("posterName");
+        String posterUrl = videoData.getString("posterUrl");
+        PosterBean posterBean = new PosterBean(posterName, posterUrl);
+        videoBean = new VideoBean(posterBean, "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4", "测试视频", 0);
     }
 
     @Override
@@ -96,8 +104,10 @@ public class GSYVideoPlayer extends BaseActivity<MainPresenter> implements MainV
     private void init() {
         videoPlayer =  (StandardGSYVideoPlayer)findViewById(R.id.video_player);
 
-        String source1 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4";
-        videoPlayer.setUp(source1, true, "测试视频");
+
+
+//        String source1 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4";
+        videoPlayer.setUp(videoBean.getChannelUrl(), true, videoBean.getChannelTitle());
 
         //增加封面
         ImageView imageView = new ImageView(this);
