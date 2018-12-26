@@ -42,7 +42,7 @@ public class VideoMainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int postion) {
                 Log.i(TAG, postion + "");
-                Intent intent = new Intent(VideoMainActivity.this, GSYVideoPlayer.class);
+                Intent intent = new Intent(VideoMainActivity.this, GSYVideoPlayerActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("posterName", "posterName");
                 bundle.putString("posterUrl", "posterUrl");

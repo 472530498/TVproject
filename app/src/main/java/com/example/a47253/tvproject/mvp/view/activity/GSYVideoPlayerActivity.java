@@ -14,22 +14,22 @@ import com.example.a47253.tvproject.bean.VideoBean;
 import com.example.a47253.tvproject.mvp.presenter.MainPresenter;
 import com.example.a47253.tvproject.mvp.view.activity.base.BaseActivity;
 import com.example.a47253.tvproject.mvp.view.iview.MainView;
+import com.example.a47253.tvproject.video.MyVideo;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
-import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
-public class GSYVideoPlayer extends BaseActivity<MainPresenter> implements MainView {
+public class GSYVideoPlayerActivity extends BaseActivity<MainPresenter> implements MainView {
     private static final String TAG = "GSYVideoPlayer";
 
     VideoBean videoBean;
 
-    StandardGSYVideoPlayer videoPlayer;
+    MyVideo videoPlayer;
 
     OrientationUtils orientationUtils;
 
     @Override
     protected int getContentLayout() {
-        return R.layout.activity_simple_play;
+        return R.layout.activity_play;
     }
 
     @Override
@@ -102,7 +102,7 @@ public class GSYVideoPlayer extends BaseActivity<MainPresenter> implements MainV
     }
 
     private void init() {
-        videoPlayer =  (StandardGSYVideoPlayer)findViewById(R.id.video_player);
+        videoPlayer =  (MyVideo) findViewById(R.id.video_player);
 
 
 
