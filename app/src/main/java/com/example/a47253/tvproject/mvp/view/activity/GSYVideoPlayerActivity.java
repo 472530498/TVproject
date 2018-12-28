@@ -39,14 +39,14 @@ public class GSYVideoPlayerActivity extends BaseActivity<MainPresenter> implemen
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        Intent i = getIntent();
-        Bundle videoData = i.getExtras();
-        Log.i(TAG, videoData.getString("posterName"));
-        Log.i(TAG, videoData.getString("posterUrl"));
-        String posterName = videoData.getString("posterName");
-        String posterUrl = videoData.getString("posterUrl");
-        PosterBean posterBean = new PosterBean(posterName, posterUrl);
-        videoBean = new VideoBean(posterBean, "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4", "测试视频", 0);
+//        Intent i = getIntent();
+//        Bundle videoData = i.getExtras();
+//        Log.i(TAG, videoData.getString("posterName"));
+//        Log.i(TAG, videoData.getString("posterUrl"));
+//        String posterName = videoData.getString("posterName");
+//        String posterUrl = videoData.getString("posterUrl");
+//        PosterBean posterBean = new PosterBean(posterName, posterUrl);
+//        videoBean = new VideoBean(posterBean, "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4", "测试视频", 0);
     }
 
     @Override
@@ -106,9 +106,9 @@ public class GSYVideoPlayerActivity extends BaseActivity<MainPresenter> implemen
 
 
 
-//        String source1 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4";
-        videoPlayer.setUp(videoBean.getChannelUrl(), true, videoBean.getChannelTitle());
-
+        String source1 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4";
+//        videoPlayer.setUp(videoBean.getChannelUrl(), true, videoBean.getChannelTitle());
+        videoPlayer.setUp(source1,true,"你好世界");
         //增加封面
         ImageView imageView = new ImageView(this);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);

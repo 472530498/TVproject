@@ -3,6 +3,7 @@ package com.example.a47253.tvproject.video;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.widget.Button;
 
 import com.example.a47253.tvproject.R;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
@@ -11,6 +12,8 @@ import com.shuyu.gsyvideoplayer.video.base.GSYBaseVideoPlayer;
 public class MyVideo extends StandardGSYVideoPlayer {
 
     private final static String TAG = "--->SampleCoverVideo";
+
+    private Button mButton;
 
     public MyVideo(Context context, Boolean fullFlag) {
         super(context, fullFlag);
@@ -28,6 +31,7 @@ public class MyVideo extends StandardGSYVideoPlayer {
     protected void init(Context context) {
         Log.i(TAG,"init");
         super.init(context);
+        mButton = findViewById(R.id.my_button_2);
     }
 
     @Override
@@ -58,12 +62,14 @@ public class MyVideo extends StandardGSYVideoPlayer {
     protected void changeUiToPlayingShow() {
         Log.i(TAG,"changeUiToPlayingShow");
         super.changeUiToPlayingShow();
+        mButton.setVisibility(GONE);
     }
 
     @Override
     protected void changeUiToPauseShow() {
         Log.i(TAG,"changeUiToPauseShow");
         super.changeUiToPauseShow();
+        mButton.setVisibility(VISIBLE);
     }
 
     @Override
