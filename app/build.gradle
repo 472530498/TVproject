@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.a47253.tvproject"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -24,6 +24,7 @@ android {
                             'src/main/res/layouts',
                             'src/main/res'
                     ]
+            jniLibs.srcDirs = ['libs']
         }
     }
 }
@@ -35,6 +36,9 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.github.bumptech.glide:glide:3.8.0'
     implementation 'com.jakewharton:butterknife:9.0.0-rc1'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.6.1'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-x86:0.8.8'
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
     implementation 'com.shuyu:GSYVideoPlayer:6.0.1'
+    implementation 'com.android.support:percent:28.0.0-alpha1'
 }
