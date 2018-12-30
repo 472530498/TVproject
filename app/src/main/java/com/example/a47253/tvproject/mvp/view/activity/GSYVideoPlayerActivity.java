@@ -34,6 +34,7 @@ public class GSYVideoPlayerActivity extends BaseActivity<MainPresenter> implemen
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);//横屏
         init();
     }
 
@@ -105,8 +106,8 @@ public class GSYVideoPlayerActivity extends BaseActivity<MainPresenter> implemen
         videoPlayer =  (MyVideo) findViewById(R.id.video_player);
 
 
-
-        String source1 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4";
+        String source1 = "http://dlhls.cdn.zhanqi.tv/zqlive/53346_ESoth.m3u8";
+//        String source1 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4";
 //        videoPlayer.setUp(videoBean.getChannelUrl(), true, videoBean.getChannelTitle());
         videoPlayer.setUp(source1,true,"你好世界");
         //增加封面

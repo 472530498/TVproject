@@ -16,20 +16,20 @@
         android:id="@+id/thumb"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:background="#000000"
         android:scaleType="fitCenter">
 
         <ImageView
             android:id="@+id/thumbImage"
-            android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
 
     </RelativeLayout>
 
@@ -61,8 +61,8 @@
             android:max="100"
             android:maxHeight="4dp"
             android:minHeight="4dp"
-            android:paddingBottom="8dp"
             android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:progressDrawable="@drawable/video_seek_progress"
             android:thumb="@drawable/video_seek_thumb" />
 
@@ -128,9 +128,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
+            android:text="my_button"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:text="my_button"/>
+            android:textSize="18sp" />
     </LinearLayout>
 
     <moe.codeest.enviews.ENDownloadView
@@ -157,7 +157,13 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="50dp"
         android:scaleType="centerInside"
-        android:text="hahah"/>
+        android:text="hahah" />
+
+    <ListView
+        android:id="@+id/myList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/my_button_2"></ListView>
 
 
     <ImageView
