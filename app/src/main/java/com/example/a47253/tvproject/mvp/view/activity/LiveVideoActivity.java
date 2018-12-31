@@ -46,14 +46,13 @@ public class LiveVideoActivity extends BaseActivity<MainPresenter> implements Ma
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        ButterKnife.bind(this);
-        isTransition = getIntent().getBooleanExtra(TRANSITION, false);
-        init();
     }
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-
+        ButterKnife.bind(this);
+        isTransition = getIntent().getBooleanExtra(TRANSITION, false);
+        init();
     }
 
     @Override
@@ -62,7 +61,7 @@ public class LiveVideoActivity extends BaseActivity<MainPresenter> implements Ma
     }
 
     private void init() {
-        String url = "http://183.207.249.12/PLTV/3/224/3221225525/index.m3u8";
+        String url = "http://dlhls.cdn.zhanqi.tv/zqlive/53346_ESoth.m3u8";
 
         videoPlayer.setUp(url, true, "");
 
