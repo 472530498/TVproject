@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.a47253.tvproject.R;
 import com.example.a47253.tvproject.bean.PosterBean;
+import com.example.a47253.tvproject.bean.VideoBean;
 
 import java.io.FileInputStream;
 import java.util.List;
@@ -41,7 +42,8 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull GridAdapter.ViewHolder viewHolder, int i) {
-        PosterBean object = (PosterBean)list.get(i);
+        VideoBean object2 = (VideoBean)list.get(i);
+        PosterBean object = object2.getPosterBean();
         viewHolder.poster_name.setText(object.getPosterName());
         FileInputStream in = null;
         Glide.with(viewHolder.itemView.getContext()).load(object.getPosterUrl()).into(viewHolder.poster);

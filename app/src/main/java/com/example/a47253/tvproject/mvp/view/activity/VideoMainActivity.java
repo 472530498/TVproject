@@ -15,6 +15,7 @@ import com.example.a47253.tvproject.adapter.GridAdapter;
 import com.example.a47253.tvproject.adapter.OnItemClickListener;
 import com.example.a47253.tvproject.bean.PosterBean;
 import com.example.a47253.tvproject.bean.ResponseBean;
+import com.example.a47253.tvproject.bean.VideoBean;
 import com.example.a47253.tvproject.retrofit.VideoRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -54,7 +55,7 @@ public class VideoMainActivity extends AppCompatActivity {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .build();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.103:7001/")
+                .baseUrl("http://192.168.0.103:7002/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
@@ -63,14 +64,15 @@ public class VideoMainActivity extends AppCompatActivity {
         service.selectVideoAll().enqueue(new Callback<ResponseBean>() {
             @Override
             public void onResponse(Call<ResponseBean> call, Response<ResponseBean> response) {
-                Log.i(TAG, response.body().getResultMsg());
-                Log.i(TAG, response.body().getResultCode());
-                Log.i(TAG, gson.toJson(response.body().getData()));
-                Log.i(TAG, response.body().getData().getClass().getName());
+//                Log.i(TAG, response.body().getResultMsg());
+//                Log.i(TAG, response.body().getResultCode());
+//                Log.i(TAG, gson.toJson(response.body().getData()));
+//                Log.i(TAG, response.body().getData().getClass().getName());
                 for (Object datum : (java.util.ArrayList) (response.body().getData())) {
                     Log.i(TAG, datum.getClass().getName());
                     LinkedTreeMap temp = (LinkedTreeMap)datum;
-                    videoList.add(new PosterBean( (String) temp.get("video_poster_url"), (String) temp.get("video_name")));
+                    PosterBean posterBean = new PosterBean((String) temp.get("video_poster_url"), (String) temp.get("video_name"));
+                    videoList.add(new VideoBean(posterBean, (String) temp.get("video_url"),(String) temp.get("video_name"), 0));
                     Log.i("list", videoList.toString());
                     gridAdapter.update(videoList);
                 }
@@ -91,8 +93,12 @@ public class VideoMainActivity extends AppCompatActivity {
                 Log.i(TAG, postion + "");
                 Intent intent = new Intent(VideoMainActivity.this, GSYVideoPlayerActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("posterName", "posterName");
-                bundle.putString("posterUrl", "posterUrl");
+//                PosterBean posterBean = (PosterBean)videoList.get(postion);
+                VideoBean videoBean = (VideoBean)videoList.get(postion);
+                bundle.putString("channelUrl",videoBean.getChannelUrl());
+                bundle.putString("channelTitle",videoBean.getChannelTitle());
+                bundle.putString("posterName",videoBean.getPosterBean().getPosterName());
+                bundle.putString("posterUrl", videoBean.getPosterBean().getPosterUrl());
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
