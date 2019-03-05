@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.a47253.tvproject.R;
 import com.example.a47253.tvproject.bean.PosterBean;
 
@@ -43,8 +44,9 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder>{
         PosterBean object = (PosterBean)list.get(i);
         viewHolder.poster_name.setText(object.getPosterName());
         FileInputStream in = null;
-        Bitmap bitmap = BitmapFactory.decodeResource(viewHolder.itemView.getResources(), R.drawable.poster);
-        viewHolder.poster.setImageBitmap(bitmap);
+        Glide.with(viewHolder.itemView.getContext()).load(object.getPosterUrl()).into(viewHolder.poster);
+//        Bitmap bitmap = BitmapFactory.decodeResource(viewHolder.itemView.getResources(), R.drawable.poster);
+//        viewHolder.poster.setImageBitmap(bitmap);
     }
 
     @Override

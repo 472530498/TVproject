@@ -8,20 +8,36 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.a47253.tvproject.R;
 import com.example.a47253.tvproject.adapter.GridAdapter;
 import com.example.a47253.tvproject.adapter.OnItemClickListener;
 import com.example.a47253.tvproject.bean.PosterBean;
+import com.example.a47253.tvproject.bean.ResponseBean;
+import com.example.a47253.tvproject.retrofit.VideoRequest;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.internal.LinkedTreeMap;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class VideoMainActivity extends AppCompatActivity {
     private final static String TAG = "VideoMainActivity";
     List<Object> videoList = new ArrayList<Object>();
     GridAdapter gridAdapter;
     RecyclerView viedioView;
+    Gson gson = new Gson();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +49,42 @@ public class VideoMainActivity extends AppCompatActivity {
         ((GridLayoutManager) manager).setOrientation(GridLayoutManager.VERTICAL);
         viedioView.setLayoutManager(manager);
         viedioView.setAdapter(gridAdapter);
-        for (int i = 0; i<7; i++) {
-            videoList.add(new PosterBean("","海报名字"));
-        }
-        Log.i("list", videoList.toString());
-        gridAdapter.update(videoList);
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .retryOnConnectionFailure(true)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.0.103:7001/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
+
+        VideoRequest service = retrofit.create(VideoRequest.class);
+        service.selectVideoAll().enqueue(new Callback<ResponseBean>() {
+            @Override
+            public void onResponse(Call<ResponseBean> call, Response<ResponseBean> response) {
+                Log.i(TAG, response.body().getResultMsg());
+                Log.i(TAG, response.body().getResultCode());
+                Log.i(TAG, gson.toJson(response.body().getData()));
+                Log.i(TAG, response.body().getData().getClass().getName());
+                for (Object datum : (java.util.ArrayList) (response.body().getData())) {
+                    Log.i(TAG, datum.getClass().getName());
+                    LinkedTreeMap temp = (LinkedTreeMap)datum;
+                    videoList.add(new PosterBean( (String) temp.get("video_poster_url"), (String) temp.get("video_name")));
+                    Log.i("list", videoList.toString());
+                    gridAdapter.update(videoList);
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBean> call, Throwable t) {
+                System.out.print("onFailure response.body():");
+            }
+        });
+//        for (int i = 0; i<7; i++) {
+//            videoList.add(new PosterBean("","海报名字"));
+//        }
+//        Log.i("list", videoList.toString());
+//        gridAdapter.update(videoList);
         gridAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int postion) {

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.a47253.tvproject">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-feature
         android:name="android.software.leanback"
         android:required="false" />
@@ -20,11 +21,11 @@
         android:banner = "@drawable/banner">
         <activity android:name=".mvp.view.activity.MainActivity"
             android:theme="@style/Theme.AppCompat">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
-            <!--<category android:name="android.intent.category.LEANBACK_LAUNCHER" />-->
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".mvp.view.activity.VideoMainActivity"></activity>
         <activity
@@ -33,11 +34,11 @@
             android:screenOrientation="portrait">
         </activity>
         <activity android:name=".mvp.view.activity.LiveVideoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LEANBACK_LAUNCHER" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
     </application>
 
