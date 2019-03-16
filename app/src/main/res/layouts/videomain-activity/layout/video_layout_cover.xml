@@ -123,14 +123,14 @@
             android:textColor="@android:color/white"
             android:textSize="18sp" />
 
-        <Button
-            android:id="@+id/my_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:text="my_button"
-            android:textColor="@android:color/white"
-            android:textSize="18sp" />
+        <!--<Button-->
+            <!--android:id="@+id/my_button"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:text="my_button"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="18sp" />-->
     </LinearLayout>
 
     <moe.codeest.enviews.ENDownloadView
@@ -149,21 +149,21 @@
         android:layout_centerVertical="true"
         android:layout_gravity="center_vertical" />
 
-    <Button
-        android:id="@+id/my_button_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="50dp"
-        android:scaleType="centerInside"
-        android:text="hahah" />
+    <!--<Button-->
+        <!--android:id="@+id/my_button_2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginRight="50dp"-->
+        <!--android:scaleType="centerInside"-->
+        <!--android:text="hahah" />-->
 
-    <ListView
-        android:id="@+id/myList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/my_button_2"></ListView>
+    <!--<ListView-->
+        <!--android:id="@+id/myList"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignTop="@id/my_button_2"></ListView>-->
 
 
     <ImageView

@@ -21,7 +21,7 @@ public class MyVideo extends StandardGSYVideoPlayer {
 
     private Button mButton;
 
-    private ListView listView;
+//    private ListView listView;
 
     private Context context;
 
@@ -44,27 +44,27 @@ public class MyVideo extends StandardGSYVideoPlayer {
     protected void init(Context context) {
         Log.i(TAG,"-->init");
         super.init(context);
-        mButton = findViewById(R.id.my_button_2);
-        listView = findViewById(R.id.myList);
-        ArrayList<String> arrayList = new ArrayList<String>();
-        arrayList.add("节目一");
-        arrayList.add("节目二");
-        arrayList.add("中央八台");
-        arrayList.add("中央八台");
-        arrayList.add("中央八台");
-        arrayList.add("中央八台");
-        arrayList.add("中央八台");
-        arrayList.add("中央八台");
-        arrayList.add("中央八台");
-        arrayList.add("中央不知道什么台");
-        int size=arrayList.size();
-        String[] array=new String[size];
-        for(int i=0;i<size;i++){
-            array[i]=(String)arrayList.get(i);
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                context,android.R.layout.simple_list_item_1, array);
-        listView.setAdapter(adapter);
+//        mButton = findViewById(R.id.my_button_2);
+//        listView = findViewById(R.id.myList);
+//        ArrayList<String> arrayList = new ArrayList<String>();
+//        arrayList.add("节目一");
+//        arrayList.add("节目二");
+//        arrayList.add("中央八台");
+//        arrayList.add("中央八台");
+//        arrayList.add("中央八台");
+//        arrayList.add("中央八台");
+//        arrayList.add("中央八台");
+//        arrayList.add("中央八台");
+//        arrayList.add("中央八台");
+//        arrayList.add("中央不知道什么台");
+//        int size=arrayList.size();
+//        String[] array=new String[size];
+//        for(int i=0;i<size;i++){
+//            array[i]=(String)arrayList.get(i);
+//        }
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+//                context,android.R.layout.simple_list_item_1, array);
+//        listView.setAdapter(adapter);
     }
 
     @Override
@@ -95,7 +95,7 @@ public class MyVideo extends StandardGSYVideoPlayer {
     protected void changeUiToPlayingShow() {
         Log.i(TAG,"-->changeUiToPlayingShow");
         super.changeUiToPlayingShow();
-        setViewShowState(mButton, GONE);
+//        setViewShowState(mButton, GONE);
     }
 
     @Override
@@ -103,10 +103,10 @@ public class MyVideo extends StandardGSYVideoPlayer {
         Log.i(TAG,"-->changeUiToPauseShow");
         super.changeUiToPauseShow();
         if (mCurrentState == CURRENT_STATE_PAUSE) {
-            mButton.setVisibility(VISIBLE);
-            listView.setVisibility(VISIBLE);
+//            mButton.setVisibility(VISIBLE);
+//            listView.setVisibility(VISIBLE);
         }   else {
-            mButton.setVisibility(GONE);
+//            mButton.setVisibility(GONE);
         }
 
     }
@@ -132,8 +132,8 @@ public class MyVideo extends StandardGSYVideoPlayer {
     protected void onClickUiToggle() {
         Log.i(TAG,"-->onClickUiToggle");
         super.onClickUiToggle();
-        setViewShowState(mButton, VISIBLE);
-        setViewShowState(listView, VISIBLE);
+//        setViewShowState(mButton, VISIBLE);
+//        setViewShowState(listView, VISIBLE);
     }
 
     @Override protected void changeUiToPrepareingClear() {
@@ -143,6 +143,6 @@ public class MyVideo extends StandardGSYVideoPlayer {
 
     @Override protected void hideAllWidget () {
         super.hideAllWidget();
-        setViewShowState(mButton, INVISIBLE);
+//        setViewShowState(mButton, INVISIBLE);
     }
 }
