@@ -49,7 +49,7 @@ public class GSYVideoPlayerActivity extends BaseActivity<MainPresenter> implemen
         String channelUrl = videoData.getString("channelUrl");
         String channelTitle = videoData.getString("channelTitle");
         PosterBean posterBean = new PosterBean(posterUrl, posterName);
-        videoBean = new VideoBean(posterBean, channelUrl, channelTitle, 0);
+        videoBean = new VideoBean(posterBean, channelUrl, channelTitle, "", "");
     }
 
     @Override

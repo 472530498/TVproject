@@ -72,7 +72,7 @@ public class VideoMainActivity extends AppCompatActivity {
                     Log.i(TAG, datum.getClass().getName());
                     LinkedTreeMap temp = (LinkedTreeMap)datum;
                     PosterBean posterBean = new PosterBean((String) temp.get("video_poster_url"), (String) temp.get("video_name"));
-                    videoList.add(new VideoBean(posterBean, (String) temp.get("video_url"),(String) temp.get("video_name"), 0));
+                    videoList.add(new VideoBean(posterBean, (String) temp.get("video_url"),(String) temp.get("video_name"), (String) temp.get("video_zone_tags_name"), (String) temp.get("video_zone_tags_id") ));
                     Log.i("list", videoList.toString());
                     gridAdapter.update(videoList);
                 }
@@ -91,10 +91,19 @@ public class VideoMainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int postion) {
                 Log.i(TAG, postion + "");
+                VideoBean videoBean = (VideoBean)videoList.get(postion);
+                Log.i(TAG, videoBean.getVideo_zone_tags_id());
+                if (videoBean.getVideo_zone_tags_id().equals("499")) {
+                    Intent intent = new Intent(VideoMainActivity.this, WebActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("channelUrl",videoBean.getChannelUrl());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                    return;
+                }
                 Intent intent = new Intent(VideoMainActivity.this, GSYVideoPlayerActivity.class);
                 Bundle bundle = new Bundle();
 //                PosterBean posterBean = (PosterBean)videoList.get(postion);
-                VideoBean videoBean = (VideoBean)videoList.get(postion);
                 bundle.putString("channelUrl",videoBean.getChannelUrl());
                 bundle.putString("channelTitle",videoBean.getChannelTitle());
                 bundle.putString("posterName",videoBean.getPosterBean().getPosterName());
