@@ -17,9 +17,16 @@ import com.example.a47253.tvproject.R;
 import com.example.a47253.tvproject.mvp.presenter.MainPresenter;
 import com.example.a47253.tvproject.mvp.view.activity.base.BaseActivity;
 import com.example.a47253.tvproject.mvp.view.iview.MainView;
+import com.mob.MobSDK;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
+import cn.smssdk.gui.RegisterPage;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainView {
     public static final String TAG = "MainActivity";
@@ -33,6 +40,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
     TextView film;
     @BindView(R.id.more)
     TextView more;
+    @BindView(R.id.login)
+    TextView login;
+    @BindView(R.id.register)
+    TextView register;
 
     private MainPresenter mainPresenter;
 
@@ -55,6 +66,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
 
     @Override
     protected void initData(Bundle savedInstanceState) {
+        MobSDK.init(this);
         mainPresenter = new MainPresenter(this);
     }
 
@@ -80,16 +92,42 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
                 else {
                     Log.w(TAG,"Main,View-Activity 都不为空");
                 }
-                 mainPresenter.jumpActivity(MainActivity.this,VideoMainActivity.class);
+                Log.i("", v.toString());
+                Map map = new HashMap();
+                map.put("video_zone_tags_name", "每日更新");
+                mainPresenter.jumpActivity(MainActivity.this,VideoMainActivity.class, map);
+            }
+        });
+        film.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map map = new HashMap();
+                map.put("video_zone_tags_name", "电影");
+                mainPresenter.jumpActivity(MainActivity.this,VideoMainActivity.class, map);
+            }
+        });
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.sendCode(MainActivity.this, login.getId());
+            }
+        });
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.sendCode(MainActivity.this, register.getId());
             }
         });
         mainPresenter.checkLogin();
     }
 
     @Override
-    public void jump(Context context, Class<?> tass) {
+    public void jump(Context context, Class<?> tass, Map map) {
         Intent intent = new Intent();
         intent.setClass(context, tass);
+        Bundle bundle = new Bundle();
+        bundle.putString("video_zone_tags_name", (String) map.get("video_zone_tags_name"));
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 
@@ -129,5 +167,34 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
         public void onFocusChange(View view,boolean hasFocus){
             mainPresenter.requestForce(view, hasFocus);
         }
+    }
+
+    public void sendCode(Context context, int ViewId) {
+        RegisterPage page = new RegisterPage();
+        //如果使用我们的ui，没有申请模板编号的情况下需传null
+        page.setTempCode(null);
+        page.setRegisterCallback(new EventHandler() {
+            public void afterEvent(int event, int result, Object data) {
+                Log.i(TAG, data + "");
+                if (result == SMSSDK.RESULT_COMPLETE) {
+                    // 处理成功的结果
+                    HashMap<String,Object> phoneMap = (HashMap<String, Object>) data;
+                    String country = (String) phoneMap.get("country"); // 国家代码，如“86”
+                    String phone = (String) phoneMap.get("phone"); // 手机号码，如“13800138000”
+                    // TODO 利用国家代码和手机号码进行后续的操作
+                    Log.i(TAG, country);
+                    Log.i(TAG, phone);
+                    if (ViewId == login.getId()) {
+
+                    } else if (ViewId == register.getId()) {
+                        
+                    }
+                } else{
+                    // TODO 处理错误的结果
+                    Log.i(TAG, result + "");
+                }
+            }
+        });
+        page.show(context);
     }
 }

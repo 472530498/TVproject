@@ -43,6 +43,8 @@ public class VideoMainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycle_layout);
+        Bundle bundle = this.getIntent().getExtras();
+        String video_zone_tags_name = bundle.getString("video_zone_tags_name");
         viedioView = findViewById(R.id.recyclerViewOPtion);
         gridAdapter = new GridAdapter(videoList);
         RecyclerView.LayoutManager manager = new GridLayoutManager(this, 3);

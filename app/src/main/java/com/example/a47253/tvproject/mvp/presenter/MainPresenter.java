@@ -8,6 +8,8 @@ import com.example.a47253.tvproject.mvp.model.imodel.IMainModel;
 import com.example.a47253.tvproject.mvp.presenter.base.BasePresenter;
 import com.example.a47253.tvproject.mvp.view.iview.MainView;
 
+import java.util.Map;
+
 public class MainPresenter extends BasePresenter {
     MainView mainView;
     MainModel mainModel = new MainModel();
@@ -25,8 +27,8 @@ public class MainPresenter extends BasePresenter {
         });
     }
 
-    public void jumpActivity ( Context context, Class<?> tClass ) {
-        mainView.jump(context, tClass);
+    public void jumpActivity (Context context, Class<?> tClass, Map map) {
+        mainView.jump(context, tClass, map);
     }
 
     public void requestForce (View view, boolean hasFocus) {

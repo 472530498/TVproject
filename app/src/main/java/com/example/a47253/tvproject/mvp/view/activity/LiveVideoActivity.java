@@ -21,6 +21,8 @@ import com.example.a47253.tvproject.video.MyVideo;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -137,7 +139,7 @@ public class LiveVideoActivity extends BaseActivity<MainPresenter> implements Ma
     }
 
     @Override
-    public void jump(Context context, Class<?> tclass) {
+    public void jump(Context context, Class<?> tclass, Map map) {
 
     }
 

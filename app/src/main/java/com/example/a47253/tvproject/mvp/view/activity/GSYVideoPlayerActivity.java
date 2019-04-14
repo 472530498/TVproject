@@ -18,6 +18,8 @@ import com.example.a47253.tvproject.video.MyVideo;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 
+import java.util.Map;
+
 public class GSYVideoPlayerActivity extends BaseActivity<MainPresenter> implements MainView {
     private static final String TAG = "GSYVideoPlayer";
 
@@ -58,7 +60,7 @@ public class GSYVideoPlayerActivity extends BaseActivity<MainPresenter> implemen
     }
 
     @Override
-    public void jump(Context context, Class<?> tclass) {
+    public void jump(Context context, Class<?> tclass, Map map) {
 
     }
 
