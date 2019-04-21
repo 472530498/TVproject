@@ -14,19 +14,39 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a47253.tvproject.R;
+import com.example.a47253.tvproject.bean.PosterBean;
+import com.example.a47253.tvproject.bean.ResponseBean;
+import com.example.a47253.tvproject.bean.VideoBean;
 import com.example.a47253.tvproject.mvp.presenter.MainPresenter;
 import com.example.a47253.tvproject.mvp.view.activity.base.BaseActivity;
 import com.example.a47253.tvproject.mvp.view.iview.MainView;
+import com.example.a47253.tvproject.retrofit.VideoRequest;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.internal.LinkedTreeMap;
 import com.mob.MobSDK;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import cn.smssdk.gui.RegisterPage;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainView {
     public static final String TAG = "MainActivity";
@@ -44,6 +64,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
     TextView login;
     @BindView(R.id.register)
     TextView register;
+
+    Gson gson = new Gson();
 
     private MainPresenter mainPresenter;
 
@@ -82,20 +104,18 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
             @Override
             public void onClick(View v) {
                 if (MainActivity.this == null) {
-                    Log.w(TAG,"nullObject MainActivity.this");
+                    Log.w(TAG, "nullObject MainActivity.this");
                     return;
-                }
-                else if (VideoMainActivity.class == null) {
-                    Log.w(TAG,"nullObject VideoMainActivity.class");
+                } else if (VideoMainActivity.class == null) {
+                    Log.w(TAG, "nullObject VideoMainActivity.class");
                     return;
-                }
-                else {
-                    Log.w(TAG,"Main,View-Activity 都不为空");
+                } else {
+                    Log.w(TAG, "Main,View-Activity 都不为空");
                 }
                 Log.i("", v.toString());
                 Map map = new HashMap();
                 map.put("video_zone_tags_name", "每日更新");
-                mainPresenter.jumpActivity(MainActivity.this,VideoMainActivity.class, map);
+                mainPresenter.jumpActivity(MainActivity.this, VideoMainActivity.class, map);
             }
         });
         film.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +123,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
             public void onClick(View v) {
                 Map map = new HashMap();
                 map.put("video_zone_tags_name", "电影");
-                mainPresenter.jumpActivity(MainActivity.this,VideoMainActivity.class, map);
+                mainPresenter.jumpActivity(MainActivity.this, VideoMainActivity.class, map);
             }
         });
         login.setOnClickListener(new View.OnClickListener() {
@@ -157,14 +177,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
     @Override
     public void showLoginStatus(boolean bool) {
         if (!bool) {
-            Log.i(TAG,"bool: " + bool);
-            Toast.makeText(MainActivity.this,"没有登陆",Toast.LENGTH_LONG).show();
+            Log.i(TAG, "bool: " + bool);
+            Toast.makeText(MainActivity.this, "没有登陆", Toast.LENGTH_LONG).show();
         }
     }
 
-    private class ViewOnFocusChanageListener implements OnFocusChangeListener{
+    private class ViewOnFocusChanageListener implements OnFocusChangeListener {
         @Override
-        public void onFocusChange(View view,boolean hasFocus){
+        public void onFocusChange(View view, boolean hasFocus) {
             mainPresenter.requestForce(view, hasFocus);
         }
     }
@@ -178,18 +198,70 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
                 Log.i(TAG, data + "");
                 if (result == SMSSDK.RESULT_COMPLETE) {
                     // 处理成功的结果
-                    HashMap<String,Object> phoneMap = (HashMap<String, Object>) data;
+                    HashMap<String, Object> phoneMap = (HashMap<String, Object>) data;
                     String country = (String) phoneMap.get("country"); // 国家代码，如“86”
                     String phone = (String) phoneMap.get("phone"); // 手机号码，如“13800138000”
                     // TODO 利用国家代码和手机号码进行后续的操作
                     Log.i(TAG, country);
                     Log.i(TAG, phone);
-                    if (ViewId == login.getId()) {
-
-                    } else if (ViewId == register.getId()) {
-                        
+                    OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                            .retryOnConnectionFailure(true)
+                            .connectTimeout(30, TimeUnit.SECONDS)
+                            .build();
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl("http://192.168.1.8:7001/")
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .client(okHttpClient)
+                            .build();
+                    VideoRequest service = retrofit.create(VideoRequest.class);
+                    JSONObject insertData = new JSONObject();
+                    JSONObject json = new JSONObject();
+                    try {
+                        insertData.put("insertData", json);
+                        json.put("user_rid", "13660590625");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } else{
+                    if (ViewId == login.getId()) {
+                        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json.toString());
+                        service.login(body).enqueue(new Callback<ResponseBean>() {
+                            @Override
+                            public void onResponse(Call<ResponseBean> call, Response<ResponseBean> response) {
+                                Log.i(TAG, response.body().getResultMsg());
+                                Log.i(TAG, response.body().getResultCode());
+                                Log.i(TAG, gson.toJson(response.body().getData()));
+                                Log.i(TAG, response.body().getData().getClass().getName());
+                                if ((response.body().getResultCode().toString().equals("1"))) {
+                                    Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBean> call, Throwable t) {
+                                System.out.print("onFailure response.body():");
+                            }
+                        });
+                    } else if (ViewId == register.getId()) {
+                        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), insertData.toString());
+                        service.register(body).enqueue(new Callback<ResponseBean>() {
+                            @Override
+                            public void onResponse(Call<ResponseBean> call, Response<ResponseBean> response) {
+                                Log.i(TAG, response.body().getResultMsg());
+                                Log.i(TAG, response.body().getResultCode());
+                                Log.i(TAG, gson.toJson(response.body().getData()));
+                                Log.i(TAG, response.body().getData().getClass().getName());
+                                if ((response.body().getResultCode().toString().equals("1"))) {
+                                    Toast.makeText(MainActivity.this, "注册成功", Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBean> call, Throwable t) {
+                                System.out.print("onFailure response.body():");
+                            }
+                        });
+                    }
+                } else {
                     // TODO 处理错误的结果
                     Log.i(TAG, result + "");
                 }
