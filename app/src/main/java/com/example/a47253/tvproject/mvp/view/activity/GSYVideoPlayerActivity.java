@@ -15,6 +15,7 @@ import com.example.a47253.tvproject.mvp.presenter.MainPresenter;
 import com.example.a47253.tvproject.mvp.view.activity.base.BaseActivity;
 import com.example.a47253.tvproject.mvp.view.iview.MainView;
 import com.example.a47253.tvproject.video.MyVideo;
+import com.example.a47253.tvproject.video.VideoCollection;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 
@@ -110,7 +111,7 @@ public class GSYVideoPlayerActivity extends BaseActivity<MainPresenter> implemen
         videoPlayer =  (MyVideo) findViewById(R.id.video_player);
         Log.i(TAG, videoBean.getChannelTitle());
         Log.i(TAG, videoBean.getChannelUrl());
-
+        videoPlayer.setVideoBean(videoBean);
 //        String source1 = "http://dlhls.cdn.zhanqi.tv/zqlive/53346_ESoth.m3u8";
 //        String source1 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4";
         videoPlayer.setUp(videoBean.getChannelUrl(), true, videoBean.getChannelTitle());
@@ -144,5 +145,4 @@ public class GSYVideoPlayerActivity extends BaseActivity<MainPresenter> implemen
         });
         videoPlayer.startPlayLogic();
     }
-
 }

@@ -57,7 +57,7 @@ public class VideoMainActivity extends AppCompatActivity {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .build();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.8:7001/")
+                .baseUrl("http://192.168.1.6:7001/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();

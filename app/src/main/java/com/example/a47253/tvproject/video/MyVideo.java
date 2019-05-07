@@ -1,25 +1,32 @@
 package com.example.a47253.tvproject.video;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.a47253.tvproject.R;
+import com.example.a47253.tvproject.bean.VideoBean;
 import com.example.a47253.tvproject.mvp.view.activity.MainActivity;
+import com.google.gson.Gson;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 import com.shuyu.gsyvideoplayer.video.base.GSYBaseVideoPlayer;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
-public class MyVideo extends StandardGSYVideoPlayer {
+public class MyVideo extends StandardGSYVideoPlayer{
 
     private final static String TAG = "--->SampleCoverVideo";
 
     private Button mButton;
+
+    private VideoBean videoBean;
 
 //    private ListView listView;
 
@@ -44,7 +51,7 @@ public class MyVideo extends StandardGSYVideoPlayer {
     protected void init(Context context) {
         Log.i(TAG,"-->init");
         super.init(context);
-//        mButton = findViewById(R.id.my_button_2);
+        mButton = findViewById(R.id.my_button_2);
 //        listView = findViewById(R.id.myList);
 //        ArrayList<String> arrayList = new ArrayList<String>();
 //        arrayList.add("节目一");
@@ -65,6 +72,22 @@ public class MyVideo extends StandardGSYVideoPlayer {
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
 //                context,android.R.layout.simple_list_item_1, array);
 //        listView.setAdapter(adapter);
+        mButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences = context.getSharedPreferences("collection", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                HashSet hashSet = (HashSet)sharedPreferences.getStringSet("videoCollection", new HashSet<>());
+                Gson gson = new Gson();
+                String jsonStr=gson.toJson(videoBean);
+                hashSet.add(jsonStr);
+                editor.putStringSet("videoCollection", hashSet);
+                Log.i(TAG, hashSet.toString());
+                editor.commit();
+                HashSet outData = (HashSet)sharedPreferences.getStringSet("videoCollection", new HashSet<>());
+                Log.i(TAG, outData.toString());
+            }
+        });
     }
 
     @Override
@@ -95,7 +118,7 @@ public class MyVideo extends StandardGSYVideoPlayer {
     protected void changeUiToPlayingShow() {
         Log.i(TAG,"-->changeUiToPlayingShow");
         super.changeUiToPlayingShow();
-//        setViewShowState(mButton, GONE);
+        setViewShowState(mButton, GONE);
     }
 
     @Override
@@ -103,10 +126,10 @@ public class MyVideo extends StandardGSYVideoPlayer {
         Log.i(TAG,"-->changeUiToPauseShow");
         super.changeUiToPauseShow();
         if (mCurrentState == CURRENT_STATE_PAUSE) {
-//            mButton.setVisibility(VISIBLE);
+            mButton.setVisibility(VISIBLE);
 //            listView.setVisibility(VISIBLE);
         }   else {
-//            mButton.setVisibility(GONE);
+            mButton.setVisibility(GONE);
         }
 
     }
@@ -132,7 +155,7 @@ public class MyVideo extends StandardGSYVideoPlayer {
     protected void onClickUiToggle() {
         Log.i(TAG,"-->onClickUiToggle");
         super.onClickUiToggle();
-//        setViewShowState(mButton, VISIBLE);
+        setViewShowState(mButton, VISIBLE);
 //        setViewShowState(listView, VISIBLE);
     }
 
@@ -143,6 +166,10 @@ public class MyVideo extends StandardGSYVideoPlayer {
 
     @Override protected void hideAllWidget () {
         super.hideAllWidget();
-//        setViewShowState(mButton, INVISIBLE);
+        setViewShowState(mButton, INVISIBLE);
+    }
+
+    public void setVideoBean (VideoBean videoBean) {
+        this.videoBean = videoBean;
     }
 }
