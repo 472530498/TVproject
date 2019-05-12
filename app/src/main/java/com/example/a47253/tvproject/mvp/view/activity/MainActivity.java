@@ -64,6 +64,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
     TextView login;
     @BindView(R.id.register)
     TextView register;
+    @BindView(R.id.collection)
+    TextView collection;
 
     Gson gson = new Gson();
 
@@ -136,6 +138,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
             @Override
             public void onClick(View v) {
                 MainActivity.this.sendCode(MainActivity.this, register.getId());
+            }
+        });
+        collection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map map = new HashMap();
+//                map.put("video_zone_tags_name", "电影");
+                mainPresenter.jumpActivity(MainActivity.this, CollectionActivity.class, map);
             }
         });
         mainPresenter.checkLogin();
