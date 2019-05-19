@@ -16,7 +16,7 @@ import com.example.a47253.tvproject.R;
 
 public class WebActivity extends Activity implements AdvancedWebView.Listener {
 
-    private static final String TEST_PAGE_URL = "https://v.youku.com/v_show/id_XNDAxNTc2MTQ3Ng==.html?spm=a2ha1.12325017.m_2540.5~1~3~A";
+    private String TEST_PAGE_URL = "https://v.youku.com/v_show/id_XNDAxNTc2MTQ3Ng==.html?spm=a2ha1.12325017.m_2540.5~1~3~A";
     private AdvancedWebView mWebView;
 
     @Override
@@ -47,6 +47,8 @@ public class WebActivity extends Activity implements AdvancedWebView.Listener {
             }
 
         });
+        Bundle bundle = this.getIntent().getExtras();
+        TEST_PAGE_URL = (String)bundle.get("channelUrl");
         mWebView.addHttpHeader("X-Requested-With", "");
         mWebView.loadUrl(TEST_PAGE_URL);
     }
