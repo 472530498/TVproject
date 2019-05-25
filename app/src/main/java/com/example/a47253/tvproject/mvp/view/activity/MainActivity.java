@@ -219,7 +219,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
                             .connectTimeout(30, TimeUnit.SECONDS)
                             .build();
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://192.168.1.8:7001/")
+                            .baseUrl("http://192.168.3.103:7001/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .client(okHttpClient)
                             .build();
