@@ -228,7 +228,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
                     JSONObject json = new JSONObject();
                     try {
                         insertData.put("insertData", json);
-                        json.put("user_rid", "13660590625");
+//                        json.put("user_rid", "13660590625");
+                        json.put("user_rid", phone);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
